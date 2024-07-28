@@ -29,10 +29,24 @@ const App = () => {
     };
 
     const fetchHighScores = async () => {
-      const wsProvider = new WsProvider('wss://your-polkadot-node');
-      const api = await ApiPromise.create({ provider: wsProvider });
-      const scores = await api.query.dotGame.highScores.entries();
-      setHighScores(scores.map(([key, value]) => ({ account: key.toHuman(), score: value.toHuman() })));
+      try {
+        const wsProvider = new WsProvider('ws://127.0.0.1:9944');
+        const api = await ApiPromise.create({ provider: wsProvider });
+
+        // Ensure API is ready
+        await api.isReady;
+
+        // Check if dotGame module exists
+        if (!api.query.dotGame || !api.query.dotGame.highScores) {
+          console.error("dotGame module or highScores storage item not found");
+          return;
+        }
+
+        const scores = await api.query.dotGame.highScores.entries();
+        setHighScores(scores.map(([key, value]) => ({ account: key.toHuman(), score: value.toHuman() })));
+      } catch (error) {
+        console.error("Error fetching high scores:", error);
+      }
     };
 
     initPolkadot();
