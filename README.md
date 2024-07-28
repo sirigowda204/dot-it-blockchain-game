@@ -43,7 +43,7 @@ Using Polkadot, the game leverages blockchain for features like storing high sco
 
 1. **Clone the repository:**
     ```sh
-    git clone https://github.com/your-username/dot-game-frontend.git
+    git clone https://github.com/sirigowda204/dot-it-blockchain-game
     cd dot-game-frontend
     ```
 
