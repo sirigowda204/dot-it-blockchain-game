@@ -1,0 +1,15 @@
+[package]
+name = "dot-game"
+version = "0.1.0"
+authors = ["Siri <srinivas.sir@northeastern.edu>"]
+edition = "2018"
+
+[dependencies]
+ink_primitives = { version = "3.0", default-features = false }
+ink_metadata = { version = "3.0", default-features = false }
+ink_env = { version = "3.0", default-features = false }
+ink_storage = { version = "3.0", default-features = false }
+ink_lang = { version = "3.0", default-features = false }
+
+[lib]
+crate-type = ["cdylib", "rlib"]
